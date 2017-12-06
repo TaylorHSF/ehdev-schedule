@@ -2,7 +2,7 @@ const schedule = require("node-schedule");
 const eventLint = require("./codeLint");
 const path = require("path");
 // const projectConfig = require("../ehuodiManagement" + path.resolve(process.cwd(), './abc.json'));
-const projectConfig = require("/Users/huangsifei/Documents/work/ehuodiManagement/abc.json");
+const projectConfig = require(process.cwd()+"/abc.json");
 
 let rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [1, 2, 3, 4, 5];

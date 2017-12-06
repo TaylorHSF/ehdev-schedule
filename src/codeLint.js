@@ -19,12 +19,13 @@ module.exports = projectConfig => {
   let attachments = [];
   let storeIndex = [];
   let emailContent = '';
+  console.log(process.cwd())
   projectList.forEach(function(project, index) {
       attachments.push({
         filename: `eslintReport-${project}.html`,
         path: `eslintReport-${project}.html`
       });
-      let codeSrc = `../ehuodiManagement/${project}/trunk/**/*.js`;
+      let codeSrc = `${process.cwd()}/${project}/trunk/**/*.js`;
       pump([
         gulp.src(codeSrc),
         logger({
@@ -59,11 +60,32 @@ module.exports = projectConfig => {
         gulp.dest('./dists')
       ],
         function(err) {
+          
           storeIndex.push(index);
           if(storeIndex.length===projectList.length){
+            function deleteAllCache(path) {  
+              var files = [];  
+              if(fs.existsSync(path)) {  
+                  files = fs.readdirSync(path);  
+                  files.forEach(function(file, index) {  
+                      var curPath = path + "/" + file;  
+                      if(fs.statSync(curPath).isDirectory()) { // recurse  
+                        console.log('deleting in '+curPath)
+                        deleteAllCache(curPath);  
+                      } else { // delete file  
+                          console.log('deleting  '+curPath)
+                          fs.unlinkSync(curPath);  
+                      }  
+                  });  
+                  fs.rmdirSync(path);  
+              }  
+            };  
+            deleteAllCache(process.cwd()+'/dists')
+
             for(let key in countObj.error){
               emailContent += `${key}模块中共有<span style='red'>${countObj.error[key]}个错误</span>，${countObj.warning[key]}个警告。请查看eslintReport-${key}.html<br>`;
             }
+            console.log('sending report mail please wait...')
             sendMail.send(`${emailContent}<br>请查看附件📎<br><br>这是来自nodemailer的邮件,请勿回复！回复也不搭理！`, attachments);
           }
           console.log(
@@ -73,4 +95,5 @@ module.exports = projectConfig => {
           );
         });
   });
+  
 };

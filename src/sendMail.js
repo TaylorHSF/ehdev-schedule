@@ -7,16 +7,16 @@ exports.send = (html, attachments) => {
     secureConnection: true,
     port: 465,
     auth: {
-      user: "doublejoke@163.com",
-      pass: "1qaz!QAZ"
+      user: "ehdfe_public@163.com",
+      pass: "eslintno1" 
     }
   });
   let toList = [
-    "15412@etransfar.com",
+    //"15412@etransfar.com",
     // "15621@etransfar.com",
     // "16639@etransfar.com",
     // "12613@etransfar.com",
-    // "15617@etransfar.com",
+     "15617@etransfar.com",
     // "17323@etransfar.com",
     // "17356@etransfar.com",
     // "15145@etransfar.com",
@@ -25,9 +25,9 @@ exports.send = (html, attachments) => {
     // "geek_he@126.com"
   ];
   let option = {
-    from: '"黄思飞"<doublejoke@163.com>',
-    to: toList.join(","),
-    bcc: "doublejoke@163.com"
+    from: '"ehdfe_public"<ehdfe_public@163.com>',
+    to: toList.join(",")/* ,
+    bcc: "doublejoke@163.com" */
   };
   option.subject = "EHDFE Eslint Report";
   option.html = html;
