@@ -15,6 +15,7 @@
     "BASE_URL": true,
     "LIBS_URL": true,
     "ENV": true,
-    "VERSION": true
+    "VERSION": true,
+    "_G": true
   }
 }

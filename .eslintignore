@@ -1,1 +1,3 @@
-../ehuodiManagement/**/trunk/dist/*
+./**/trunk/dist/*
+./scms/trunk/js/*
+./scms/trunk/libs/*
