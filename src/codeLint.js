@@ -10,6 +10,7 @@ const runSequence = require("run-sequence");
 const eslintFormatter = require("eslint-friendly-formatter");
 const sendMail = require("./sendMail");
 
+
 module.exports = projectConfig => {
   const projectList = Object.keys(projectConfig.workspace);
   let countObj = {
