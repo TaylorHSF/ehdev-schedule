@@ -1,6 +1,6 @@
 {
   "name": "ehdschedule",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Scheduled to e-mail eslint results to users.",
   "main": "index.js",
   "keywords": [
