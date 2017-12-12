@@ -1,7 +1,7 @@
 {
   "name": "ehdschedule",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.5.1",
+  "description": "Scheduled to e-mail eslint results to users.",
   "main": "index.js",
   "keywords": [
     "ehdev",
@@ -11,6 +11,9 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "ehdschedule": "./bin/ehdschedule"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +27,16 @@
     "node-schedule": "^1.2.5",
     "nodemailer": "^4.4.0",
     "pump": "^1.0.3",
-    "run-sequence": "^2.2.0"
-  }
+    "run-sequence": "^2.2.0",
+    "inquirer":"^4.0.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suary/ehdev-schedule.git"
+  },
+  "bugs": {
+    "url": "https://github.com/suary/ehdev-schedule/issues"
+  },
+  "homepage": "https://github.com/suary/ehdev-schedule#readme"
 }

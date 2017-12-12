@@ -10,7 +10,9 @@ const runSequence = require("run-sequence");
 const eslintFormatter = require("eslint-friendly-formatter");
 const sendMail = require("./sendMail");
 
+
 module.exports = projectConfig => {
+
   const projectList = Object.keys(projectConfig.workspace);
   let countObj = {
     error: {},
@@ -19,7 +21,6 @@ module.exports = projectConfig => {
   let attachments = [];
   let storeIndex = [];
   let emailContent = '';
-  console.log(process.cwd())
   projectList.forEach(function(project, index) {
       attachments.push({
         filename: `eslintReport-${project}.html`,
@@ -83,10 +84,10 @@ module.exports = projectConfig => {
             deleteAllCache(process.cwd()+'/dists')
 
             for(let key in countObj.error){
-              emailContent += `${key}模块中共有<span style='red'>${countObj.error[key]}个错误</span>，${countObj.warning[key]}个警告。请查看eslintReport-${key}.html<br>`;
+              emailContent += `${key}模块中共有<span style='color:red'>${countObj.error[key]}个错误</span>，<span style='color:orange'>${countObj.warning[key]}个警告</span>。请查看eslintReport-${key}.html<br>`;
             }
             console.log('sending report mail please wait...')
-            sendMail.send(`${emailContent}<br>请查看附件📎<br><br>这是来自nodemailer的邮件,请勿回复！回复也不搭理！`, attachments);
+            sendMail.send(`${emailContent}<br>请查看附件📎<br><br>这是来自nodemailer的邮件,请勿回复！回复也不搭理！`, attachments,projectConfig.mailReceiver);
           }
           console.log(
             chalk.red(
