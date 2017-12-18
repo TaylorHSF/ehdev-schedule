@@ -87,7 +87,7 @@ module.exports = projectConfig => {
               emailContent += `${key}模块中共有<span style='color:red'>${countObj.error[key]}个错误</span>，<span style='color:orange'>${countObj.warning[key]}个警告</span>。请查看eslintReport-${key}.html<br>`;
             }
             console.log('sending report mail please wait...')
-            sendMail.send(`${emailContent}<br>请查看附件📎<br><br>这是来自nodemailer的邮件,请勿回复！回复也不搭理！`, attachments,projectConfig.mailReceiver);
+            sendMail.send(projectConfig.mailConfig,`${emailContent}<br>请查看附件📎<br><br>这是来自nodemailer的邮件,请勿回复！回复也不搭理！`, attachments,projectConfig.mailReceiver);
           }
           console.log(
             chalk.red(

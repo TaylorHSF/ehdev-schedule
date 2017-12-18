@@ -1,16 +1,12 @@
 const nodemailer = require("nodemailer");
 
-exports.send = (html, attachments,receiver) => {
+exports.send = (mailConfig,html, attachments,receiver) => {
   //配置邮件
-  let transporter = nodemailer.createTransport({
-    host: "smtp.163.com",
-    secureConnection: true,
-    port: 465,
-    auth: {
-      user: "ehdfe_public@163.com",
-      pass: "eslintno1" 
-    }
-  });
+  if(!mailConfig){
+    console.log('找不到邮件配置')
+    return
+  }
+  let transporter = nodemailer.createTransport(mailConfig);
   
   let option = {
     from: '"ehdfe_public"<ehdfe_public@163.com>',
