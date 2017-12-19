@@ -26,7 +26,7 @@ module.exports = projectConfig => {
         filename: `eslintReport-${project}.html`,
         path: `eslintReport-${project}.html`
       });
-      let codeSrc = `${process.cwd()}/${project}/trunk/**/*.js`;
+      let codeSrc = `${process.cwd()}/${project}/${projectConfig.workspace[project].branch}/**/*.js`;
       pump([
         gulp.src(codeSrc),
         logger({
